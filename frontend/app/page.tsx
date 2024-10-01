@@ -37,7 +37,7 @@ async function createMessage(thread: Thread, content: string): Promise<Message> 
 
 const createHumanMessage = (thread: Thread, content: string): Message => 
   ({
-    id: 0,
+    id: Math.random(),
     thread_id: thread.id,
     sender: "human",
     content: content,
