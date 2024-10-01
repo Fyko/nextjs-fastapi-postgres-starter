@@ -3,10 +3,8 @@ from typing import List
 from datetime import datetime
 import enum
 from sqlalchemy import Integer, Enum
+from src.models import MessageSender
 
-class MessageSender(enum.Enum):
-    human = "human"
-    system = "system"
 
 class APIMessage(BaseModel):
     id: int
@@ -14,6 +12,7 @@ class APIMessage(BaseModel):
     sender: MessageSender
     content: str
     created_at: datetime
+
 
 class RestPostCreateMessageJSONRequest(BaseModel):
     content: str

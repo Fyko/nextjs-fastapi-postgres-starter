@@ -17,10 +17,12 @@ sync_engine = create_engine(_sync_uri)
 engine = create_async_engine(_async_uri)
 async_session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
 
+
 async def migrate():
-	async with engine.begin() as conn:
-		await conn.run_sync(Base.metadata.create_all)
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
 
 async def get_db():
-	async with async_session() as session:
-		yield session
+    async with async_session() as session:
+        yield session

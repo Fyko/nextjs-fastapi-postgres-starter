@@ -60,7 +60,6 @@ async def get_threads(db: AsyncSession = Depends(get_db)):
     for thread in threads:
         thread.messages.sort(key=lambda message: message.created_at)
 
-
     if threads is None:
         return RestGetThreadsJSONResponse(threads=[])
     return RestGetThreadsJSONResponse(
@@ -98,8 +97,6 @@ async def create_thread(db: AsyncSession = Depends(get_db)):
     db.add(thread)
     await db.commit()
     await db.refresh(thread)
-
-    print(f"Thread created: {thread.id}")
 
     return APIThread(
         id=thread.id, title=thread.title, created_at=thread.created_at, messages=[]
